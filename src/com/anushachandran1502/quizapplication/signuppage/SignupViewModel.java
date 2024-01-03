@@ -27,6 +27,6 @@ public class SignupViewModel {
 		{
 			view.signup();
 		}
-		topic.showTopics();
+  //topic.showTopics();
 	}
 }

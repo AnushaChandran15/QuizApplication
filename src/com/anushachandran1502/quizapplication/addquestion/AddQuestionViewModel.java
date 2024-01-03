@@ -18,24 +18,21 @@ public class AddQuestionViewModel {
 	}
 	public AddQuestionViewModel() {
 	}
-	public void quizQutions(List<QuizQuestion> questionList) {
+	public void quizQutions(List<QuizQuestion> questionList, int current) {
 		AddQuestionViewModel model=new AddQuestionViewModel();
 		ExamCodeDetailsView examCode=new ExamCodeDetailsView();
 		String code=model.generateCode();
 		try {
-			repo.addQuestionsToDb(questionList,code);
+			repo.addQuestionsToDb(questionList,code,current);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		examCode.showTheExamCodeDetails(code);
-		
 	}
 	private String generateCode() {
 		UUID uuid= UUID.randomUUID();
 		String uuidString= uuid.toString();
 		String code=uuidString.split("-")[0];
 		return code;
-
 	}
-
 }

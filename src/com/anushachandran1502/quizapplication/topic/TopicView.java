@@ -7,7 +7,7 @@ import com.anushachandran1502.quizapplication.addquestion.AddQuestionView;
 public class TopicView {
 	Scanner scan=new Scanner(System.in);
 	
-	public void showTopics() {
+	public void showTopics(int currentUser) {
 				boolean terminate=true;
 				TopicView topicView=new TopicView();
 				AddQuestionView addQues=new AddQuestionView();
@@ -19,15 +19,15 @@ public class TopicView {
 		{
 			case 1:
 				terminate=false;
-				addQues.addQuestion();
+				addQues.addQuestion(currentUser);
 				break;
 			case 2:
 				terminate=false;
-				addQues.addQuestion();
+				addQues.addQuestion(currentUser);
 				break;
 			case 3:
 				terminate=false;
-				addQues.addQuestion();
+				addQues.addQuestion(currentUser);
 				break;
 			case 0:
 				terminate=false;
@@ -39,25 +39,25 @@ public class TopicView {
 	}
 	
 	}
-	private void addquestion() {
-		AddQuestionView view=new AddQuestionView();
-		TopicView Tview=new TopicView();
-		System.out.println("1.Add Question\n2.back\n0.exit");
-		int option=scan.nextInt();
-		scan.next();
-		switch(option)
-		{
-			case 1: 
-				view.addQuestion();
-				break;
-			case 2:
-				Tview.showTopics();
-				break;
-			case 0:
-				System.exit(0);
-			default:
-				System.out.println("Wrong input ....");
-		}
-		
-	}
+//	private void addquestion() {
+//		AddQuestionView view=new AddQuestionView();
+//		TopicView Tview=new TopicView();
+//		System.out.println("1.Add Question\n2.back\n0.exit");
+//		int option=scan.nextInt();
+//		scan.next();
+//		switch(option)
+//		{
+//			case 1: 
+//				view.addQuestion();
+//				break;
+//			case 2:
+//				Tview.showTopics();
+//				break;
+//			case 0:
+//				System.exit(0);
+//			default:
+//				System.out.println("Wrong input ....");
+//		}
+//		
+//	}
 }

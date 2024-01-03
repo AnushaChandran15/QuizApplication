@@ -17,9 +17,9 @@ public class Repository {
 	static Connection con;
 	private Repository()
 	{
-		 String url = "jdbc:mysql://localhost:3306/QuizQuestion";
-		 String userName = "root";
-		 String passWord = "root";
+		 String url = "jdbc:mysql://localhost:3306/quizquestion";
+		 String userName = "Anusha";
+		 String passWord = "1234";
 		 try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				 this.con = DriverManager.getConnection(url, userName, passWord);
@@ -27,8 +27,6 @@ public class Repository {
 		 catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
 	}
 	public static Repository getInstance()
 	{
@@ -38,17 +36,19 @@ public class Repository {
 		}
 		return repository;
 	}
-	public void addQuestionsToDb(List<QuizQuestion> questionList,String code) throws SQLException {
+	public void addQuestionsToDb(List<QuizQuestion> questionList,String code, int current) throws SQLException {
 		PreparedStatement pre;
 		for(int i=0;i<questionList.size();i++)
 		{
-			String query="Insert into questions values(?,?,?,?)";
+			String query="Insert into questions values(?,?,?,?,?,?)";
 			pre=con.prepareStatement(query);
 			pre.setString(1, code);
 			pre.setString(2, questionList.get(i).getQuestion());
 		//	String jsonValue = "[" + String.join(",",  questionList.get(i).getOption()) + "]";
 			pre.setString(3, questionList.get(i).getOption());
 			pre.setString(4, questionList.get(i).getCorrectAns());
+			pre.setInt(5, current);
+			pre.setString(6, "Java1");
 			pre.executeUpdate();
 		}	
 	}
@@ -59,7 +59,23 @@ public class Repository {
         preparedStatement.setString(2, admin.getPassword());
         preparedStatement.executeUpdate();
 	}
-	
+	public int isValidUserQA(String username, String password) {
+		int id = 0;
+	    try {
+	        String query = "SELECT * FROM users WHERE user_Name = '"+username+"' AND password = '"+password+"'";
+	        Statement s = con.createStatement();
+	        ResultSet rs = s.executeQuery(query);
+	        while(rs.next())
+	        {
+	        	id = rs.getInt("id");
+	        }
+	        return id;
+	    } catch (SQLException e) {
+	        e.printStackTrace(); 
+	    }
+		return 0;
+	}
+
 
 }
 

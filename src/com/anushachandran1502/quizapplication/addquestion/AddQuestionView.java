@@ -14,7 +14,7 @@ public class AddQuestionView {
 			 addQuesViewModel = new AddQuestionViewModel(this);
 		}
 
-	public void addQuestion() {
+	public void addQuestion(int current) {
 		Scanner scanner=new Scanner(System.in);
 		List<QuizQuestion> questionList=new ArrayList<QuizQuestion>();
 		boolean terminate=true;
@@ -60,7 +60,7 @@ public class AddQuestionView {
 					break;
 				case 2:
 					terminate=false;
-					addQuesViewModel.quizQutions(questionList);
+					addQuesViewModel.quizQutions(questionList,current);
 					break;
 			}
 		}
