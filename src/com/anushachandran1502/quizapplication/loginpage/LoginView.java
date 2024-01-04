@@ -35,7 +35,7 @@ public class LoginView {
 		System.out.println("Enter a Password only 8 Characters");
 		String password=scanner.nextLine();
 		boolean user=loginViewModel.isValidUser(userName,password);
-		System.out.println(this.currentUser);
+		//System.out.println(this.currentUser);
 		if(user)
 		{
 			topicView.showTopics(this.currentUser);

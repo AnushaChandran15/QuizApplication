@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.anushachandran1502.quizapplication.dto.QuizQuestion;
+import com.anushachandran1502.quizapplication.examcodedetails.ExamCodeDetailsView;
 import com.anushachandran1502.quizapplication.loginpage.LoginViewModel;
 
 public class AddQuestionView {
@@ -14,8 +15,9 @@ public class AddQuestionView {
 			 addQuesViewModel = new AddQuestionViewModel(this);
 		}
 
-	public void addQuestion(int current) {
+	public void addQuestion(int current,int topicNo) {
 		Scanner scanner=new Scanner(System.in);
+		ExamCodeDetailsView examCode=new ExamCodeDetailsView();
 		List<QuizQuestion> questionList=new ArrayList<QuizQuestion>();
 		boolean terminate=true;
 		do {
@@ -60,13 +62,15 @@ public class AddQuestionView {
 					break;
 				case 2:
 					terminate=false;
-					addQuesViewModel.quizQutions(questionList,current);
+					addQuesViewModel.quizQutions(questionList,current,topicNo);
+					//examcode.showExamCodeDeatails(code,);
 					break;
 			}
 		}
 		while(terminate);
 	}
 
+	
 	
 
 }

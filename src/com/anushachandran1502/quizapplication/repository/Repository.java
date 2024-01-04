@@ -75,6 +75,38 @@ public class Repository {
 	    }
 		return 0;
 	}
+	public String getTopicNameInDB(int topicNo) {
+		String topic="";
+	    try {
+	        String query = "SELECT topics FROM  topic_table WHERE id='"+topicNo+"'";
+	        Statement s = con.createStatement();
+	        ResultSet rs = s.executeQuery(query);
+	        while(rs.next())
+	        {
+	        	topic=rs.getString(topicNo);
+	        }
+	       return topic;
+	    } catch (SQLException e) {
+	        e.printStackTrace(); 
+	    }
+		return null;
+	}
+	public boolean isValidCode(String code) {
+		String topic="";
+	    try {
+	        String query = "SELECT Exam_codes FROM users  WHERE id='"+code+"'";
+	        Statement s = con.createStatement();
+	        ResultSet rs = s.executeQuery(query);
+	        while(rs.next())
+	        {
+	        	//topic=rs.getString(topicNo);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace(); 
+	    
+	}
+		return false;
+	}
 
 
 }

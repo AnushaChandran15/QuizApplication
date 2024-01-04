@@ -19,15 +19,15 @@ public class TopicView {
 		{
 			case 1:
 				terminate=false;
-				addQues.addQuestion(currentUser);
+				addQues.addQuestion(currentUser,choice);
 				break;
 			case 2:
 				terminate=false;
-				addQues.addQuestion(currentUser);
+				addQues.addQuestion(currentUser,choice);
 				break;
 			case 3:
 				terminate=false;
-				addQues.addQuestion(currentUser);
+				addQues.addQuestion(currentUser,choice);
 				break;
 			case 0:
 				terminate=false;

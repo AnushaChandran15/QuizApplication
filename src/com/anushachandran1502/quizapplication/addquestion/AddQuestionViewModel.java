@@ -18,7 +18,7 @@ public class AddQuestionViewModel {
 	}
 	public AddQuestionViewModel() {
 	}
-	public void quizQutions(List<QuizQuestion> questionList, int current) {
+	public void quizQutions(List<QuizQuestion> questionList, int current,int topicNo) {
 		AddQuestionViewModel model=new AddQuestionViewModel();
 		ExamCodeDetailsView examCode=new ExamCodeDetailsView();
 		String code=model.generateCode();
@@ -27,7 +27,7 @@ public class AddQuestionViewModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		examCode.showTheExamCodeDetails(code);
+		examCode.showTheExamCodeDetails(code,topicNo);
 	}
 	private String generateCode() {
 		UUID uuid= UUID.randomUUID();

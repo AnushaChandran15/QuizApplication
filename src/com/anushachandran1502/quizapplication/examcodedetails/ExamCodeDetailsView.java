@@ -1,10 +1,19 @@
 package com.anushachandran1502.quizapplication.examcodedetails;
 
 public class ExamCodeDetailsView {
-
-	public void showTheExamCodeDetails(String code) {
-		// TODO Auto-generated method stub
-		
+		private ExamCodeViewDetailsViewModel viewModel;
+	public ExamCodeDetailsView()
+	{
+		viewModel=new ExamCodeViewDetailsViewModel(this);
 	}
-
+	public void showTheExamCodeDetails(String code, int topicNo) {
+		String topic=viewModel.getTopicName(topicNo);
+		if(!topic.equals(""))
+		{
+		System.out.println("Topic : " +topic);
+		System.out.println("Exam_Code : "+code);
+		}
+	}
 }
+
+

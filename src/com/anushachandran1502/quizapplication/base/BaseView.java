@@ -42,7 +42,7 @@ System.out.println("\t\t\t\t\t\t\t\t | Date: " + formattedDate +" |");
       			break;
       		case 3:
       			terminate=false;
-      			test.getUserDeatils();
+      			test.start();
       			break;
       		default:
       			System.out.println("Wrong option select...");
