@@ -19,7 +19,7 @@ public class Repository {
 	{
 		 String url = "jdbc:mysql://localhost:3306/quizquestion";
 		 String userName = "Anusha";
-		 String passWord = "1234";
+		 String passWord = "";
 		 try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				 this.con = DriverManager.getConnection(url, userName, passWord);
@@ -36,7 +36,7 @@ public class Repository {
 		}
 		return repository;
 	}
-	public void addQuestionsToDb(List<QuizQuestion> questionList,String code, int current) throws SQLException {
+	public boolean addQuestionsToDb(List<QuizQuestion> questionList,String code, int current) throws SQLException {
 		PreparedStatement pre;
 		for(int i=0;i<questionList.size();i++)
 		{
@@ -49,15 +49,31 @@ public class Repository {
 			pre.setString(4, questionList.get(i).getCorrectAns());
 			pre.setInt(5, current);
 			pre.setString(6, "Java1");
-			pre.executeUpdate();
-		}	
+			int rowAffected=pre.executeUpdate();
+			return rowAffected>0?true:false;
+		}
+		return false;	
 	}
-	public void insertUser(Admin admin) throws SQLException {
-        String sql = "INSERT INTO users (user_Name, password) VALUES (?, ?)";
+	public boolean insertUser(Admin admin) throws SQLException {
+		String sql="select*from users where user_Name=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, admin.getuserName());
-        preparedStatement.setString(2, admin.getPassword());
-        preparedStatement.executeUpdate();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next())
+        {
+            System.out.println("Username '"  + "' already exists.");
+        	return false;
+        } else {
+            System.out.println("Username '" +  "' is available.");
+            String query = "INSERT INTO users (user_Name, password) VALUES (?, ?)";
+            PreparedStatement preparedStatement1 = con.prepareStatement(query);
+            preparedStatement1.setString(1, admin.getuserName());
+            preparedStatement1.setString(2, admin.getPassword());
+            preparedStatement1.executeUpdate();
+            return true;
+           
+        }
+       // return false;
 	}
 	public int isValidUserQA(String username, String password) {
 		int id = 0;
@@ -99,16 +115,25 @@ public class Repository {
 	        ResultSet rs = s.executeQuery(query);
 	        while(rs.next())
 	        {
-	        	//topic=rs.getString(topicNo);
+	        	if(query.contains(code))
+	        	{
+	        		return true;
+	        	}
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace(); 
-	    
 	}
 		return false;
 	}
-
-
+	public boolean insertExamCodeUserID(int current, String code) throws SQLException {
+		String sql="update users set exam_codes=? where id=?";
+		PreparedStatement pre;
+			pre = con.prepareStatement(sql);
+		pre.setInt(1,current);
+		pre.setString(2,code);
+		int rowAffected=pre.executeUpdate();
+		return rowAffected>0?true:false;
+	}
 }
 
 

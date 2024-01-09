@@ -17,7 +17,6 @@ public class AttendATestView {
 		{
 		System.out.println("Enter the Code");
 		String code=scanner.nextLine();
-		
 		System.out.println("Enter the Your Name");
 		String name=scanner.nextLine();
 		System.out.println("Enter the Email_Id");

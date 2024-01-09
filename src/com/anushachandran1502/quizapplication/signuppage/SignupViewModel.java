@@ -20,7 +20,7 @@ public class SignupViewModel {
 		{
 			if(password.length()==8)
 			{
-				repo.insertUser(new Admin(userName, password));
+				boolean isAvaliable=repo.insertUser(new Admin(userName, password));
 					id=repo.isValidUserQA( userName,password);
 					if(id==0)
 				{

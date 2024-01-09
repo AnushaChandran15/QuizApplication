@@ -23,7 +23,11 @@ public class AddQuestionViewModel {
 		ExamCodeDetailsView examCode=new ExamCodeDetailsView();
 		String code=model.generateCode();
 		try {
-			repo.addQuestionsToDb(questionList,code,current);
+			boolean added=repo.addQuestionsToDb(questionList,code,current);
+			if(added)
+			{
+				repo.insertExamCodeUserID(current,code);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
