@@ -14,7 +14,6 @@ public class Home {
     public Home() {
     	
     }
-
     public static void main(String[] args) {
     	BaseView baseview=new BaseView();
     	baseview.start();

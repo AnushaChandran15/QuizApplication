@@ -135,11 +135,7 @@ public class Repository {
 		return rowAffected>0?true:false;
 	}
 }
-
-
-
 //package com.anushachandran1502.quizapplication.repository;
-//
 //import java.util.ArrayList;
 //import java.util.Arrays;
 //import java.util.HashMap;
